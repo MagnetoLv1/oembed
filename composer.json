@@ -1,0 +1,21 @@
+{
+  "name": "magnetolv1/oembed",
+  "description": "PHP library to retrieve page info using oembed",
+  "authors": [
+    {
+      "name": "lomi525",
+      "email": "lomi525@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "illuminate/support": "^5.0",
+    "illuminate/cache": "^5.0",
+    "mpratt/embera": "~2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MagnetoLv1\\Oembed\\": "src/"
+    }
+  }
+}

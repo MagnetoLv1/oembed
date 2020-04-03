@@ -8,6 +8,7 @@ oEmbed란?
 > oEmbed는 다른 사이트의 URL을 내장된 표현을 가능하게 하는 Format 입니다.
 > 유저가 Resource 에 해당하는 링크를 입력할 때, 웹사이트들이 Resource를 직접 파싱하지 않고, 내장된 컨텐츠(사진과 비디오같은)를 보여줄 수 있게 하는 간단한 API 입니다.
 
+- 공식 사이트 : [https://oembed.com](https://oembed.com)
 - 관련 포스트 : [‛oEmbed를 소개합니다‛](https://meetup.toast.com/posts/81)
 - Based on [https://github.com/mpratt/Embera](https://github.com/mpratt/Embera)
 

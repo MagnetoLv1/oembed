@@ -1,6 +1,8 @@
 {
   "name": "magnetolv1/oembed",
   "description": "PHP library to retrieve page info using oembed",
+  "keywords": ["oembed", "laravel", "api", "api", "Embera"],
+  "license": "MIT",
   "authors": [
     {
       "name": "lomi525",

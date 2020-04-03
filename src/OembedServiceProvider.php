@@ -22,6 +22,9 @@ class OembedServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__ . '/config/oembed.php' => config_path('oembed.php'),
+        ]);
 
     }
 
@@ -38,14 +41,5 @@ class OembedServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return array('oembed');
-    }
 
 }

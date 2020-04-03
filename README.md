@@ -26,7 +26,7 @@ composer require magnetolv1/oembed
 
 
 ## Configuration
-`lomi525/oembed`의 설정 값을 퍼블리싱 하기
+`MagnetoLv1/oembed`의 설정 값을 퍼블리싱 하기
 ```sh
 php artisan vendor:publish --provider="MagnetoLv1\Oembed\OembedServiceProvider"
 ```

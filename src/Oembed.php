@@ -7,7 +7,7 @@ use Embera\html\IgnoreTags;
 use Embera\html\ResponsiveEmbeds;
 use Embera\Http\OembedClient;
 use Embera\ProviderCollection\DefaultProviderCollection;
-use Illuminate\Contracts\Cache\Factory AS CacheFactory;
+use Illuminate\Contracts\Cache\Factory as CacheFactory;
 
 
 /**
@@ -38,6 +38,9 @@ class Oembed
      * @var
      */
     protected $expire;
+
+    /** @var array Closures to be used on oembed responses */
+    protected $filters = [];
 
     /**
      * The constructor.
@@ -94,9 +97,26 @@ class Oembed
 
         return $this->cache->remember($url, $this->expire, function () use ($url) {
             $embera = new Embera($this->config['config'], $this->collections);
+            foreach ($this->filters as $closure) {
+                $embera->addFilter($closure);
+            }
             $oembeds = $embera->getUrlData($url);
-            return count($oembeds) ? $oembeds[$url] : [];
+            $oembed = optional($oembeds)[$url];
+            return $oembed ? $oembed : [];
         });
+    }
+
+
+    /**
+     * Adds a filter to the oembed response
+     *
+     * @param callable $closure
+     * @return void
+     */
+    public function filter(callable $closure)
+    {
+        $this->filters[] = $closure;
+        return $this;
     }
 
 
@@ -111,6 +131,9 @@ class Oembed
         $hash = md5($text);
         return $this->cache->remember($hash, $this->expire, function () use ($text) {
             $embera = new Embera($this->config['config'], $this->collections);
+            foreach ($this->filters as $closure) {
+                $embera->addFilter($closure);
+            }
             return $embera->autoEmbed($text);
         });
     }
@@ -126,6 +149,9 @@ class Oembed
         $key = implode(",", $urls);
         return $this->cache->remember($key, $this->expire, function () use ($urls) {
             $embera = new Embera($this->config['config'], $this->collections);
+            foreach ($this->filters as $closure) {
+                $embera->addFilter($closure);
+            }
             return $embera->getUrlData($urls);
         });
     }
